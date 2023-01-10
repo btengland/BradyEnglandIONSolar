@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Text, View } from "react-native";
-import PokemonDetails from "./PokemonDetails";
 
-function PokemonNames(navigation) {
+function PokemonNames({ navigation }) {
   const [data, setData] = useState([]);
 
   const getPokemon = async () => {
@@ -19,23 +18,20 @@ function PokemonNames(navigation) {
     getPokemon();
   }, []);
 
-  const getIndividualPokemon = async () => {
-    try {
-      const response = await fetch(item.url);
-      const json = await response.json();
-      setData(json.results);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <View style={{ flex: 1, padding: 50 }}>
       <FlatList
         data={data}
         keyExtractor={({ id }, index) => id}
         renderItem={({ item }) => (
-          <Text onPress={() => ref.current.navigate("PokemonDetails")}>
+          <Text
+            onPress={() =>
+              navigation.navigate("PokemonDetails", {
+                name: item.name,
+                url: item.url,
+              })
+            }
+          >
             {item.name}
           </Text>
         )}

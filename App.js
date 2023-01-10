@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import PokemonNames from "./src/PokemonNames";
 import PokemonDetails from "./src/PokemonDetails";
 import { FlatList, Text, View } from "react-native";
@@ -18,7 +19,7 @@ export default function App() {
         <Stack.Screen
           name="PokemonDetails"
           component={PokemonDetails}
-          options={{ title: "Pokemon Details" }}
+          options={{ title: "Pokemon Abilities" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
